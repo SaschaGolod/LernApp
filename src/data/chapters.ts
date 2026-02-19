@@ -1874,7 +1874,7 @@ export const chapters: Chapter[] = [
       {
         id: "scm17",
         question: "Warum ist lokale Wertschöpfungsanalyse wichtig?",
-        answer: "Identifiziert dezentrale Produktionsschritte, die in der Supply Chain nicht vorgesehen waren. Zeigt Produkte mit vielzähligen dezentralen Anpassungen (z.B. Portable Gas Detection MTO+CTO, Helmets CTO). Basis für Transformation zu zentraler Wertschöpfung.",
+        answer: "Identifiziert dezentrale Produktionsschritte, die in der Supply Chain nicht vorgesehen waren. Zeigt Produkte mit vielzähligen dezentralen Anpassungen (z.B. Portable Gas Detection MTO+CTO [Make-to-Order + Configure-to-Order], Helmets CTO [Configure-to-Order]). Basis für Transformation zu zentraler Wertschöpfung.",
         category: "Analyse"
       }
     ],
@@ -1882,72 +1882,72 @@ export const chapters: Chapter[] = [
       {
         id: "scmq1",
         question: "Welche Produkttypologie hat die kürzeste Lead Time?",
-        options: ["ETO", "MTO", "CTO", "MTS"],
+        options: ["ETO (Engineer-to-Order)", "MTO (Make-to-Order)", "CTO (Configure-to-Order)", "MTS (Make-to-Stock)"],
         correctIndex: 3,
-        explanation: "MTS (Make-to-Stock): Standardisierte Produkte auf Lager, Lead Time <1 Tag, sofort verfügbar. ETO = längste (Engineering nach Auftrag). MTO/CTO = mittlere Lead Times."
+        explanation: "Richtig: MTS (Make-to-Stock) – Standardisierte Produkte auf Lager, Lead Time <1 Tag, sofort verfügbar. ETO (Engineer-to-Order) = längste Lead Time, Engineering erst nach Auftrag. MTO (Make-to-Order) = Fertigung nach Auftrag, mittlere Lead Time. CTO (Configure-to-Order) = Konfiguration aus Standardkomponenten, ebenfalls mittlere Lead Time."
       },
       {
         id: "scmq2",
         question: "Was kennzeichnet die HUB-Vertriebsstruktur?",
         options: ["Punkt-zu-Punkt-Verbindungen", "Zentrale Knotenpunkte, an denen Plants und Supplier verbunden sind", "Keine Zulieferer", "Nur ein Standort"],
         correctIndex: 1,
-        explanation: "HUBs sind zentrale Knotenpunkte. Plants und Supplier liefern Komponenten an HUBs, fertige Produkte gehen über Sales an Endkunden. Soll-Zustand: einstufige Struktur, nachvollziehbar und rückverfolgbar."
+        explanation: "Richtig: Zentrale Knotenpunkte (HUBs) – Plants und Supplier liefern an HUBs, fertige Produkte über Sales an Endkunden. Punkt-zu-Punkt = IST-Zustand bei Dräger, diffuse Distribution. Keine Zulieferer/Nur ein Standort = widerspricht der HUB-Konzeption (mehrere Plants, Supplier, HUBs)."
       },
       {
         id: "scmq3",
         question: "Welche Produkttypologie beschreibt die Fertigung nach Auftragseingang mit standardisierten Komponenten?",
-        options: ["MTS", "CTO", "MTO", "ETO"],
+        options: ["MTS (Make-to-Stock)", "CTO (Configure-to-Order)", "MTO (Make-to-Order)", "ETO (Engineer-to-Order)"],
         correctIndex: 1,
-        explanation: "CTO (Configure-to-Order): Produkt aus Standardkomponenten assembliert/konfiguriert nach Kundenwunsch. MTS = Lagerfertigung. MTO = Fertigung nach Auftrag. ETO = Engineering nach Auftrag."
+        explanation: "Richtig: CTO (Configure-to-Order) – Produkt aus Standardkomponenten assembliert/konfiguriert nach Kundenwunsch. MTS (Make-to-Stock) = Lagerfertigung, kein Auftrag nötig. MTO (Make-to-Order) = Fertigung nach Auftrag, aber ohne Fokus auf Standardkomponenten. ETO (Engineer-to-Order) = Engineering nach Auftrag, Produkt wird erst entwickelt."
       },
       {
         id: "scmq4",
         question: "Was ist dezentrale Produktanpassung?",
         options: ["Zentrale Fertigung aller Varianten", "Lokale Anpassungen außerhalb der zentralen Produktion (Zertifikate, Gesetze, Kennzeichnung)", "Keine Anpassungen", "Nur Verpackung"],
         correctIndex: 1,
-        explanation: "Dezentrale Anpassung: lokale/regionale Modifikationen – Kalibrierzertifikate, lokale Gesetzgebung, Gefahrgutkennzeichnung, Dokumentation, PED-Zertifizierung. Erhöht Komplexität."
+        explanation: "Richtig: Lokale Anpassungen – Kalibrierzertifikate, lokale Gesetzgebung, Gefahrgutkennzeichnung, PED-Zertifizierung. Zentrale Fertigung = Gegenteil, keine dezentralen Anpassungen. Keine Anpassungen/Nur Verpackung = zu eingeschränkt, dezentrale Anpassung umfasst mehr."
       },
       {
         id: "scmq5",
         question: "Welches Paradigma kennzeichnet das moderne SCM?",
         options: ["Einzelunternehmen konkurrieren", "Vernetzte Lieferketten konkurrieren miteinander", "Keine Koordination nötig", "Nur Zulieferer sind relevant"],
         correctIndex: 1,
-        explanation: "Nicht mehr Einzelunternehmen, sondern vernetzte Lieferketten konkurrieren. Integration und Koordination aller Mitglieder der Lieferkette ist Aufgabe des SCM."
+        explanation: "Richtig: Vernetzte Lieferketten konkurrieren – nicht mehr Einzelunternehmen. Einzelunternehmen = veraltetes Paradigma. Keine Koordination = falsch, SCM ist Koordination. Nur Zulieferer = zu einseitig, Kunden, Händler, Logistikdienstleister gehören dazu."
       },
       {
         id: "scmq6",
         question: "Was bedeutet E2E (End-to-End) in der Lieferkette?",
         options: ["Nur Endkunde", "Sichtweise vom Zulieferer über Unternehmen bis Endkunden", "Nur Produktion", "Nur Logistik"],
         correctIndex: 1,
-        explanation: "End-to-End: Gesamter Fluss vom ursprünglichen Zulieferer über das eigene Unternehmen bis zum Endkunden. Wie das Produkt von Produktionsstätten zum Kunden gelangt."
+        explanation: "Richtig: Gesamter Fluss vom Zulieferer über Unternehmen bis Endkunden. Nur Endkunde = zu eng, E2E umfasst die ganze Kette. Nur Produktion/Nur Logistik = Teilaspekte, E2E betrachtet den gesamten Wertschöpfungsfluss."
       },
       {
         id: "scmq7",
         question: "Welche Methoden werden im SCM zur Verschwendungsreduktion eingesetzt?",
         options: ["QFD", "Konstruktionskataloge", "Lean und 6-Sigma, TIMWOOD", "Brainstorming"],
         correctIndex: 2,
-        explanation: "Lean und 6-Sigma. TIMWOOD = Identifizieren und Eliminieren von Verschwendung. Ziel: Resilienz, Flexibilität, Effizienz der Lieferkette."
+        explanation: "Richtig: Lean und 6-Sigma, TIMWOOD (Verschwendung identifizieren/eliminieren). QFD = Quality Function Deployment, für Anforderungsübertragung. Konstruktionskataloge = Lösungsfindung in Produktentwicklung. Brainstorming = Kreativitätsmethode, nicht SCM-spezifisch."
       },
       {
         id: "scmq8",
         question: "Was ist das Ziel der Supply Chain gerechten Produktgestaltung?",
         options: ["Nur Kosten senken", "Frühe Implementierung aller relevanten SCM-Anforderungen in den Entwicklungsprozess", "Nur Logistik optimieren", "Keine Produktvarianten"],
         correctIndex: 1,
-        explanation: "Frühzeitige Implementierung aller relevanten SCM-Anforderungen in den Entwicklungsprozess neuer Produkte. Komplexitätstreiber beherrschen durch Anforderungsmanagement, Tools, Guidelines."
+        explanation: "Richtig: Frühe Implementierung aller SCM-Anforderungen – Komplexität in der Entwicklung beherrschen. Nur Kosten/Nur Logistik = Teilaspekte, Ziel ist umfassender. Keine Produktvarianten = falsch, Supply Chain gerechte Gestaltung ermöglicht Variantenvielfalt."
       },
       {
         id: "scmq9",
         question: "Welche Produkttypologie hat die längste Lead Time und den höchsten Aufwand?",
-        options: ["MTS", "CTO", "MTO", "ETO"],
+        options: ["MTS (Make-to-Stock)", "CTO (Configure-to-Order)", "MTO (Make-to-Order)", "ETO (Engineer-to-Order)"],
         correctIndex: 3,
-        explanation: "ETO (Engineer-to-Order): Konstruktion erst nach Auftragseingang. Lange Lead Times, präzise Liefertermine, hoher Aufwand, Spezialverpackung, Direktlieferung zur Baustelle."
+        explanation: "Richtig: ETO (Engineer-to-Order) – Konstruktion erst nach Auftrag, längste Lead Times, höchster Aufwand. MTS (Make-to-Stock) = kürzeste Lead Time, Lagerfertigung. CTO (Configure-to-Order) = mittlere Lead Time, Konfiguration. MTO (Make-to-Order) = Fertigung nach Auftrag, mittlere Lead Time, weniger Aufwand als ETO."
       },
       {
         id: "scmq10",
         question: "Was versteht man unter offener vs. geschlossener Konfiguration?",
         options: ["Offen = nur Konfigurator, geschlossen = alle Wünsche", "Offen = weitere Wünsche möglich (z.B. Aufschrift), geschlossen = nur Konfigurator-Auswahl", "Kein Unterschied", "Offen = teurer"],
         correctIndex: 1,
-        explanation: "Offen: Neben Konfigurator weitere Wünsche (Farbe, Aufschrift). Geschlossen: Nur Auswahl aus Konfigurator. Offene Konfiguration kann zu nicht vorgesehenen lokalen Anpassungen führen."
+        explanation: "Richtig: Offen = weitere Wünsche möglich (z.B. Aufschrift), geschlossen = nur Konfigurator. Offen=nur Konfigurator wäre vertauscht. Kein Unterschied = falsch, offen ermöglicht lokale Anpassungen. Offen=teurer = nur Nebeneffekt, nicht die Definition."
       }
     ]
   },
