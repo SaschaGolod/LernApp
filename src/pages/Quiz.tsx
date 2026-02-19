@@ -25,6 +25,7 @@ export default function Quiz() {
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [showResult, setShowResult] = useState(false)
+  const [showCompletion, setShowCompletion] = useState(false)
   const [score, setScore] = useState(0)
 
   if (!chapter) {
@@ -48,12 +49,16 @@ export default function Quiz() {
   }
 
   const next = () => {
-    setIndex((i) => i + 1)
-    setSelected(null)
-    setShowResult(false)
+    if (index >= total - 1) {
+      setShowCompletion(true)
+    } else {
+      setIndex((i) => i + 1)
+      setSelected(null)
+      setShowResult(false)
+    }
   }
 
-  const isFinished = index >= total - 1 && showResult
+  const isFinished = showCompletion
 
   const resetQuiz = () => {
     setQuestions(
@@ -67,6 +72,7 @@ export default function Quiz() {
     setIndex(0)
     setSelected(null)
     setShowResult(false)
+    setShowCompletion(false)
     setScore(0)
   }
 
