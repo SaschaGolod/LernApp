@@ -40,8 +40,19 @@ export default function Home() {
     })
   }
 
-  const favoriteChapters = chapters.filter((c) => favorites.has(c.id))
-  const otherChapters = chapters.filter((c) => !favorites.has(c.id))
+  const chapterNumber = (title: string) => {
+    const m = title.match(/Kapitel (\d+)/)
+    return m ? parseInt(m[1], 10) : 999
+  }
+  const byChapterOrder = (a: (typeof chapters)[0], b: (typeof chapters)[0]) =>
+    chapterNumber(a.title) - chapterNumber(b.title)
+
+  const favoriteChapters = chapters
+    .filter((c) => favorites.has(c.id))
+    .sort(byChapterOrder)
+  const otherChapters = chapters
+    .filter((c) => !favorites.has(c.id))
+    .sort(byChapterOrder)
 
   const ChapterCard = ({ chapter }: { chapter: (typeof chapters)[0] }) => {
     const isFavorite = favorites.has(chapter.id)
