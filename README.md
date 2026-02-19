@@ -1,14 +1,27 @@
 # LernApp – Mündliche Prüfung vorbereiten
 
-Eine Lern-App zur Vorbereitung auf mündliche Prüfungen. Du kannst Folien/Kapitel hinzufügen und dich mit Karteikarten, Quiz und Prüfungsmodus vorbereiten.
+Eine Lern-App zur Vorbereitung auf mündliche Prüfungen im Modul **Methoden der Produktentwicklung** (MPE, TUHH). Du kannst dich mit Karteikarten, Quiz und Prüfungsmodus vorbereiten.
 
-## Kapitel 6: Modularisierung
+## Kapitelübersicht (1–14)
 
-Das Kapitel „Modularisierung“ aus der Vorlesung „Methoden der Produktentwicklung“ (TUHH) ist bereits eingebaut. Es umfasst:
+| Nr. | Kapitel |
+|-----|---------|
+| 1 | Einführung + Moderationstechniken |
+| 2 | Nachhaltigkeit in der Produktentwicklung |
+| 3 | Historie der Konstruktionsmethodik und Projektmanagement |
+| 4 | Anforderungsmanagement und MBSE in der Produktentwicklung |
+| 5 | Variantengerechte Gestaltung |
+| 6 | Modularisierung |
+| 7 | Individualisierung |
+| 8 | Konstruktionskataloge |
+| 9 | Angepasste QFD |
+| 10 | Technisches Supply Chain Management |
+| 11 | Nutzerzentrierung |
+| 12 | Systematische Werkstoffauswahl |
+| 13 | Design for Manufacturing aus Sicht eines Flugzeugherstellers |
+| 14 | Risikobeurteilung |
 
-- **29 Karteikarten** zu Grundlagen, Methoden (Stone, DSM, MFD), Lebensphasenmodularisierung
-- **10 Quiz-Fragen** mit Multiple Choice und Erklärungen
-- **Prüfungsmodus** zur Simulation der mündlichen Prüfung
+Jedes Kapitel enthält Karteikarten, Quiz-Fragen mit Erklärungen und ist im Prüfungsmodus nutzbar.
 
 ## Installation & Start
 
