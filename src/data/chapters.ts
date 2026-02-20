@@ -2280,6 +2280,60 @@ export const chapters: Chapter[] = [
         question: "Was sind freie Variablen beim Zielkonflikt?",
         answer: "Konstruktionsparameter, die frei wählbar sind (z.B. Radius r, Breite b, Höhe h). Werden genutzt um Zielfunktion mit Versagenskriterium zu verknüpfen und Materialindex abzuleiten.",
         category: "Zielkonflikt"
+      },
+      {
+        id: "w18",
+        question: "Wie lautet das Versagenskriterium bei Knickung (Stab)?",
+        answer: "Kritische Knicklast: F_k = π²·E·I/L². Für kreisförmigen Querschnitt: I = π·r⁴/4. Daraus folgt Materialindex M_m = E^(1/2)/ρ für Massenminimierung.",
+        category: "Materialindex"
+      },
+      {
+        id: "w19",
+        question: "Wie lautet das Versagenskriterium bei Durchbiegung (Biegebalken)?",
+        answer: "Max. Durchbiegung: w_max = F·L³/(3·E·I). Für Rechteckquerschnitt: I = b·h³/12. Daraus folgt Materialindex M_m = E^(1/3)/ρ für Massenminimierung.",
+        category: "Materialindex"
+      },
+      {
+        id: "w20",
+        question: "Welche typischen Randbedingungen werden bei der Vorauswahl genutzt?",
+        answer: "E-Modul (min.), Dichte (max.), Bruchdehnung (min.), Kosten (max. €/kg), Einsatztemperatur, Geometrie (Querschnittsform). Schränken den Auswahlbereich im Werkstoffdiagramm ein.",
+        category: "Ashby"
+      },
+      {
+        id: "w21",
+        question: "Wie lautet die logarithmische Geradengleichung für M = E^(1/2)/ρ?",
+        answer: "log(E) = 2·(log(ρ) + log(c)). Im log-log-Diagramm (log E vs. log ρ) ergibt das eine Gerade mit Steigung 2. c = konstanter Materialindex-Wert.",
+        category: "Diagramm"
+      },
+      {
+        id: "w22",
+        question: "Was ist die Gewichtung Kosten-Masse beim kombinierten Materialindex?",
+        answer: "Gleichzeitige Betrachtung: Dichte·Preis/E^(1/2). Gewichtung möglich (z.B. 1:1, 2:1, 4:1 Kosten:Masse). Je höher Kostengewichtung, desto steiler die Optimierungsgerade.",
+        category: "Kosten"
+      },
+      {
+        id: "w23",
+        question: "Welche Logarithmengesetze braucht man für die Geradengleichung?",
+        answer: "Produkte: log(x·y) = log(x) + log(y). Quotienten: log(x/y) = log(x) − log(y). Potenzen: log(x^y) = y·log(x). Damit wird Materialindex in lineare Form für log-log-Diagramm gebracht.",
+        category: "Diagramm"
+      },
+      {
+        id: "w24",
+        question: "Ist Biegung eine Materialeigenschaft?",
+        answer: "Nein. Biegung hängt von Geometrie (I = Flächenträgheitsmoment) und Material (E-Modul) ab. Die relevante Materialeigenschaft für Steifigkeit bei Biegung ist der E-Modul.",
+        category: "Grundlagen"
+      },
+      {
+        id: "w25",
+        question: "Ist Dauerfestigkeit eine Materialeigenschaft?",
+        answer: "Ja. Dauerfestigkeit (Wöhlerkurve) ist eine werkstoffspezifische Kenngröße – Grenze der Schwingfestigkeit bei hoher Lastspielzahl. Wird in Materialanforderungslisten als Randbedingung gefordert.",
+        category: "Grundlagen"
+      },
+      {
+        id: "w26",
+        question: "Was zeigt das Jungheinrich-Beispiel zur Werkstoffauswahl?",
+        answer: "Praxiserfolge: Fahrerkabine S600/S700 MC (bis 25% Kosten-, 70% Gewichtsreduzierung), Gabelträger, Fahrerschutzdach (Alu Knet), Handgabelhubwagen (Carbon). Systematische Auswahl im PEP.",
+        category: "Praxis"
       }
     ],
     quizQuestions: [
@@ -2288,21 +2342,21 @@ export const chapters: Chapter[] = [
         question: "Welche Werkstofffamilie gehört NICHT zu den Hauptfamilien?",
         options: ["Metalle", "Polymere", "Verbundwerkstoffe", "Legierungen"],
         correctIndex: 3,
-        explanation: "Legierungen sind Werkstoffgruppen innerhalb der Familie Metalle (z.B. Stähle, Al-Legierungen, Cu-Legierungen), keine eigene Familie. Hauptfamilien: Metalle, Polymere, Keramiken, Verbundwerkstoffe, Elastomere, Schäume, natürliche Werkstoffe."
+        explanation: "Richtig: Legierungen – Werkstoffgruppen innerhalb der Familie Metalle (Stähle, Al-, Cu-, Ti-, Ni-, Zn-Legierungen), keine eigene Familie. Metalle, Polymere, Verbundwerkstoffe = Hauptfamilien. Hauptfamilien: Metalle, Polymere, Technische/Nichttechnische Keramiken, Verbundwerkstoffe, Elastomere, Schäume, natürliche Werkstoffe."
       },
       {
         id: "wq2",
         question: "Welcher Schritt kommt zuerst in der Ashby-Methode?",
         options: ["Graphische Feinauswahl", "Vorauswahl mit Randbedingungen", "Werkstoffentscheidung", "Zielkonflikt formulieren"],
         correctIndex: 1,
-        explanation: "Reihenfolge: 1. Vorauswahl mit Randbedingungen (Diagramm einschränken), 2. Zielkonflikt formulieren (Zielfunktion, Versagenskriterium, Materialindex), 3. Graphische Feinauswahl (Werkstoffdiagramm), 4. Werkstoffentscheidung."
+        explanation: "Richtig: Vorauswahl mit Randbedingungen – zuerst Auswahlbereich im Diagramm einschränken. Graphische Feinauswahl = Schritt 3. Werkstoffentscheidung = Schritt 4 (final). Zielkonflikt formulieren = Schritt 2 (Materialindex ableiten)."
       },
       {
         id: "wq3",
         question: "Bei Knickung lautet der Materialindex für Massenminimierung:",
         options: ["E/ρ", "E^(1/2)/ρ", "E/ρ²", "ρ/E"],
         correctIndex: 1,
-        explanation: "M_m = E^(1/2)/ρ. Aus kritischer Knicklast F_k = π²·E·I/L² und I = π·r⁴/4 abgeleitet. Masse minimieren, wenn E^(1/2)/ρ maximiert wird. Bei Durchbiegung: E^(1/3)/ρ."
+        explanation: "Richtig: E^(1/2)/ρ – aus F_k = π²·E·I/L² und I = π·r⁴/4. E/ρ = spezifischer E-Modul (Zug). E/ρ² = falscher Exponent. ρ/E = falsche Richtung (minimieren statt maximieren). Durchbiegung: E^(1/3)/ρ."
       },
       {
         id: "wq4",
@@ -2316,21 +2370,21 @@ export const chapters: Chapter[] = [
         question: "Was berücksichtigt das einfache Werkstoffkostenmodell NICHT?",
         options: ["Materialpreis", "Prozesskosten", "Gewicht", "Dichte"],
         correctIndex: 1,
-        explanation: "Einfaches Modell: Kosten = Gewicht × Werkstoffpreis. Nur Materialpreis wird berücksichtigt. Prozesskosten (Schneiden, Biegen, Schweißen, Oberflächenbehandlung) fehlen. Kostenvergleichsmodell berücksichtigt Kostentreiber."
+        explanation: "Richtig: Prozesskosten – einfaches Modell: Kosten = Gewicht × Werkstoffpreis. Materialpreis und Gewicht = werden berücksichtigt. Dichte = indirekt über Gewicht. Prozesskosten (Schneiden, Biegen, Schweißen) fehlen; Kostenvergleichsmodell nutzt Kostentreiber."
       },
       {
         id: "wq6",
         question: "Der Materialkostenindex bei Knickung lautet:",
         options: ["E^(1/2)/ρ", "E^(1/2)/(ρ·c)", "ρ·c/E", "E/(ρ·c)"],
         correctIndex: 1,
-        explanation: "M_c = E^(1/2)/(ρ·c) – Ziel: Minimierung der Werkstoffkosten. c = Preis pro kg. Aus Masse m = ρ·(L·A) und Kosten = m·c abgeleitet. Massenindex E^(1/2)/ρ wird um Faktor 1/c erweitert."
+        explanation: "Richtig: E^(1/2)/(ρ·c) – Ziel: Minimierung der Werkstoffkosten, c = Preis pro kg. E^(1/2)/ρ = Massenindex (ohne Kosten). ρ·c/E = falsche Richtung. E/(ρ·c) = falscher Exponent. Kosten = m·c = ρ·V·c."
       },
       {
         id: "wq7",
         question: "Welche Software unterstützt die Ashby-Methode?",
         options: ["SolidWorks", "CES Selector / CES EduPack", "MATLAB", "Excel"],
         correctIndex: 1,
-        explanation: "CES Selector (CES EduPack) von Granta Design: computerunterstützte Werkstoffauswahl mit Ashby-Charts, Randbedingungen, Vergleich von Werkstoffalternativen. SolidWorks = CAD. MATLAB/Excel = allgemein, nicht speziell für Ashby."
+        explanation: "Richtig: CES Selector / CES EduPack (Granta Design) – Ashby-Charts, Randbedingungen, Werkstoffvergleich. SolidWorks = CAD-Software. MATLAB = numerische Berechnungen. Excel = Tabellenkalkulation – nicht speziell für Ashby-Methode."
       },
       {
         id: "wq8",
@@ -2344,7 +2398,7 @@ export const chapters: Chapter[] = [
         question: "Bei Durchbiegung (Biegebalken) lautet der Materialindex für Massenminimierung:",
         options: ["E/ρ", "E^(1/2)/ρ", "E^(1/3)/ρ", "E^(2)/ρ"],
         correctIndex: 2,
-        explanation: "M_m = E^(1/3)/ρ. Aus max. Durchbiegung w_max = F·L³/(3·E·I) mit I = b·h³/12 abgeleitet. Knickung: E^(1/2)/ρ. Zug: E/ρ. Exponent hängt vom Versagensfall ab."
+        explanation: "Richtig: E^(1/3)/ρ – aus w_max = F·L³/(3·E·I), I = b·h³/12. E/ρ = Zug. E^(1/2)/ρ = Knickung. E^(2)/ρ = falscher Exponent. Exponent 1/3 bei Biegung, 1/2 bei Knickung, 1 bei Zug."
       },
       {
         id: "wq10",
@@ -2352,6 +2406,146 @@ export const chapters: Chapter[] = [
         options: ["Nach unten rechts", "In Richtung höherer Materialindex (z.B. oben links)", "Nach unten links", "Horizontal"],
         correctIndex: 1,
         explanation: "Optimierungsrichtung: Gerade in Richtung höherer Materialindex verschieben (z.B. im E-ρ-Diagramm nach oben links). Der Werkstoff mit höchstem M auf der Geraden innerhalb der Randbedingungen ist optimal. Höherer M = geringere Masse bei gleicher Funktion."
+      },
+      {
+        id: "wq11",
+        question: "Welche drei Arten der Werkstoffauswahl gibt es?",
+        options: ["Nur systematisch nach Ashby", "Willkürlich, nach Spannungsniveau, systematisch nach Ashby", "Nur nach Preis", "Nur nach Gewicht"],
+        correctIndex: 1,
+        explanation: "Richtig: 1. Willkürliche Materialauswahl. 2. Auswahl nach Spannungsniveau (E-Modul, Streckgrenze, Zugfestigkeit). 3. Systematische Werkstoffauswahl nach Ashby (Vorauswahl, Zielkonflikt, graphische Feinauswahl). Nur Preis/Gewicht = zu eingeschränkt."
+      },
+      {
+        id: "wq12",
+        question: "Was gehört zu Aufgabenblock 1 der Ashby-Methode?",
+        options: ["Graphische Feinauswahl", "Übersetzen der Bauteilanforderungen in Werkstoffanforderungen, Belastungssituation ermitteln", "Materialindex aufstellen", "Optimierungsgerade einzeichnen"],
+        correctIndex: 1,
+        explanation: "Richtig: Aufgabenblock 1 = Bauteilanforderungen in Werkstoffanforderungen übersetzen, Belastungssituation und Bauraum ermitteln, Materialanforderungsliste, kritischen Versagensfall definieren. Graphische Feinauswahl und Materialindex = Aufgabenblock 2."
+      },
+      {
+        id: "wq13",
+        question: "Bei Zugbelastung (Stab) lautet der Materialindex für Massenminimierung:",
+        options: ["E^(1/2)/ρ", "E^(1/3)/ρ", "E/ρ", "ρ/E"],
+        correctIndex: 2,
+        explanation: "Richtig: M_m = E/ρ bei Zug. Aus σ = F/A und ε = σ/E. Knickung: E^(1/2)/ρ. Durchbiegung: E^(1/3)/ρ. ρ/E = falsche Richtung (minimieren statt maximieren)."
+      },
+      {
+        id: "wq14",
+        question: "Welche Werkstofffamilien zählen zu den Hauptfamilien?",
+        options: ["Nur Metalle und Polymere", "Metalle, Polymere, Keramiken, Verbundwerkstoffe, Elastomere, Schäume, natürliche Werkstoffe", "Nur Stähle und Aluminium", "Nur Kunststoffe"],
+        correctIndex: 1,
+        explanation: "Richtig: Hauptfamilien sind Metalle, Polymere, Technische/Nichttechnische Keramiken, Verbundwerkstoffe, Elastomere, Schäume, natürliche Werkstoffe. Stähle/Aluminium = Werkstoffgruppen innerhalb Metalle. Nur Kunststoffe = zu eingeschränkt."
+      },
+      {
+        id: "wq15",
+        question: "Warum ist eine systematische Werkstoffauswahl notwendig?",
+        options: ["Weil es nur wenige Werkstoffe gibt", "Steigende Anzahl verfügbarer Werkstoffe, Ziele wie Gewichts- und Kostensenkung, intuitive Auswahl reicht nicht", "Nur für teure Produkte", "Gesetzliche Vorgabe"],
+        correctIndex: 1,
+        explanation: "Richtig: Steigende Anzahl verfügbarer Werkstoffe, gleichzeitig Ziele wie Gewichts- und Kostensenkung, Multifunktionalität. Intuitive Auswahl reicht nicht aus. Wenige Werkstoffe = falsch. Gesetzliche Vorgabe = nicht der Hauptgrund."
+      },
+      {
+        id: "wq16",
+        question: "Wann sollte die systematische Werkstoffauswahl im PEP durchgeführt werden?",
+        options: ["Erst in der Serienproduktion", "Bei der Konzeptphase, wenn Bauteilanforderungen und Belastungssituation bekannt sind", "Nur bei Prototypen", "Nach der Fertigung"],
+        correctIndex: 1,
+        explanation: "Richtig: Früh im PEP (VDI 2221), bei der Konzeptphase. Serienproduktion/Prototypen/Fertigung = zu spät, Werkstoff sollte bereits in Konzeptphase festgelegt sein."
+      },
+      {
+        id: "wq17",
+        question: "Was berücksichtigt das Kostenvergleichsmodell im Gegensatz zum einfachen Modell?",
+        options: ["Nur Materialpreis", "Kostentreiber wie Einkaufen, Schneiden, Biegen, Schweißen", "Nur Gewicht", "Nur Dichte"],
+        correctIndex: 1,
+        explanation: "Richtig: Kostenvergleichsmodell berücksichtigt Kostentreiber (Einkaufen, Schneiden, Biegen, Schweißen), variable und fixe Kosten, Break-Even-Analyse. Einfaches Modell = nur Gewicht × Werkstoffpreis."
+      },
+      {
+        id: "wq18",
+        question: "Welche Steigung hat die Optimierungsgerade bei M = E^(1/3)/ρ (Durchbiegung)?",
+        options: ["1", "2", "3", "1/3"],
+        correctIndex: 2,
+        explanation: "Richtig: Steigung 3. Aus log(E) = 3·(log(ρ) + log(c)) im log-log-Diagramm. Bei E^(1/2)/ρ wäre Steigung 2. Der Exponent im Materialindex bestimmt die Steigung."
+      },
+      {
+        id: "wq19",
+        question: "Was ist c im Materialkostenindex M_c = E^(1/2)/(ρ·c)?",
+        options: ["Dichte", "E-Modul", "Preis pro kg (Werkstoffpreis)", "Kritische Last"],
+        correctIndex: 2,
+        explanation: "Richtig: c = Preis pro kg (Werkstoffpreis). Kosten = m·c = ρ·V·c. Materialkostenindex erweitert Massenindex um 1/c. Dichte = ρ, E-Modul = E."
+      },
+      {
+        id: "wq20",
+        question: "Welche Werkstoffgruppe gehört zu den Metallen?",
+        options: ["Polyethylen", "Stähle, Al-Legierungen, Cu-Legierungen", "Epoxidharz", "Glas"],
+        correctIndex: 1,
+        explanation: "Richtig: Stähle, Al-Legierungen, Cu-Legierungen, Ti-Legierungen, Ni-Legierungen, Zn-Legierungen = Werkstoffgruppen innerhalb der Familie Metalle. Polyethylen/Epoxidharz = Polymere. Glas = Keramik."
+      },
+      {
+        id: "wq21",
+        question: "Welche Formel beschreibt die kritische Knicklast eines Stabs?",
+        options: ["F_k = E·A/L", "F_k = π²·E·I/L²", "F_k = σ·A", "F_k = ρ·V·g"],
+        correctIndex: 1,
+        explanation: "Richtig: F_k = π²·E·I/L² (Euler-Knicklast). E = E-Modul, I = Flächenträgheitsmoment, L = Knicklänge. E·A/L = Steifigkeit bei Zug. σ·A = Zugkraft. ρ·V·g = Gewichtskraft."
+      },
+      {
+        id: "wq22",
+        question: "Bei welchem Bauteil ist typischerweise Knickung das Versagenskriterium?",
+        options: ["Platte unter Biegung", "Tischbein (Stab unter Druck)", "Gabelzinke unter Biegung", "Membran"],
+        correctIndex: 1,
+        explanation: "Richtig: Tischbein = Druckstab mit festgelegter Länge – Knickung (Euler) ist das Versagenskriterium. Gabelzinke = Biegebalken, Durchbiegung. Platte/Membran = andere Versagensfälle."
+      },
+      {
+        id: "wq23",
+        question: "Welche Randbedingung passt zum Tischbein (Übung 2)?",
+        options: ["E-Modul ≥ 40 GPa", "E-Modul ≥ 1 GPa, Dichte ≤ 4000 kg/m³, Kosten ≤ 5€/kg", "Dichte ≤ 9000 kg/m³, Kosten ≤ 130€/kg", "Bruchdehnung ≥ 5%"],
+        correctIndex: 1,
+        explanation: "Richtig: Tischbein: E ≥ 1 GPa, ρ ≤ 4000 kg/m³, Kosten ≤ 5€/kg, Bruchdehnung ≥ 0,5%, Kreisförmiger Querschnitt. Gabelzinken: E ≥ 40 GPa, ρ ≤ 9000 kg/m³, Kosten ≤ 130€/kg, Bruchdehnung ≥ 1%."
+      },
+      {
+        id: "wq24",
+        question: "Ist Biegung eine Materialeigenschaft?",
+        options: ["Ja, direkt", "Nein – Biegung hängt von Geometrie (I) und E-Modul ab", "Nur bei Metallen", "Nur bei Kunststoffen"],
+        correctIndex: 1,
+        explanation: "Richtig: Biegung hängt von Geometrie (Flächenträgheitsmoment I) und Material (E-Modul) ab. Die relevante Materialeigenschaft für Steifigkeit bei Biegung ist der E-Modul.",
+      },
+      {
+        id: "wq25",
+        question: "Welche Motivation treibt die systematische Werkstoffauswahl?",
+        options: ["Nur Kostensenkung", "Nur Gewichtsreduzierung", "Kostensenkung, Gewichtsreduzierung, Multifunktionalität, Energieeffizienz", "Gesetzliche Vorgabe"],
+        correctIndex: 2,
+        explanation: "Richtig: Mehrere Ziele gleichzeitig – Kostensenkung, Gewichtsreduzierung, Multifunktionalität, Energieeffizienz, Steigerung immateriellen Werts. Steigende Werkstoffanzahl macht Systematik nötig."
+      },
+      {
+        id: "wq26",
+        question: "Was leistet der CES Selector?",
+        options: ["CAD-Modellierung", "Randbedingungen definieren, Ashby-Charts, Werkstoffvergleich", "Fertigungsplanung", "Kostenrechnung"],
+        correctIndex: 1,
+        explanation: "Richtig: CES Selector (CES EduPack): Randbedingungen (E-Modul, Dichte, Kosten etc.) definieren, Ashby-Charts zur graphischen Feinauswahl, Vergleich verbleibender Werkstoffalternativen. CAD/Fertigung/Kostenrechnung = andere Tools."
+      },
+      {
+        id: "wq27",
+        question: "Welche Zielfunktion wird bei Massenminimierung einer Strebe formuliert?",
+        options: ["m = E·V", "m = ρ·V = ρ·L·A", "m = F·L", "m = σ·A"],
+        correctIndex: 1,
+        explanation: "Richtig: m = ρ·V = ρ·L·A. Masse = Dichte × Volumen. Mit Versagenskriterium (Knickung) und freier Variable (r) wird daraus der Materialindex E^(1/2)/ρ abgeleitet."
+      },
+      {
+        id: "wq28",
+        question: "Was bedeutet die Steigung 2 im E-ρ-Diagramm für M = E^(1/2)/ρ?",
+        options: ["E steigt doppelt so schnell wie ρ", "log(E) = 2·(log(ρ) + konst.) – Gerade mit Steigung 2", "ρ = 2·E", "E = ρ²"],
+        correctIndex: 1,
+        explanation: "Richtig: Aus log(c) = log(E^(1/2)/ρ) folgt log(E) = 2·(log(ρ) + log(c)). Im log-log-Diagramm (log E vs. log ρ) ist die Steigung 2. Bei E^(1/3)/ρ wäre Steigung 3."
+      },
+      {
+        id: "wq29",
+        question: "Welche Literatur ist Standard für die Ashby-Methode?",
+        options: ["VDI 2221", "Ashby: Materials Selection in Mechanical Design", "DIN EN ISO 9001", "Roth Konstruktionskatalog"],
+        correctIndex: 1,
+        explanation: "Richtig: Ashby, M.F.: Materials Selection in Mechanical Design (Butterworth-Heinemann, 4. Aufl. 2011). VDI 2221 = Produktentwicklung. DIN 9001 = Qualitätsmanagement. Roth = Konstruktionskataloge."
+      },
+      {
+        id: "wq30",
+        question: "Wann im VDI-2221-Prozess sollte die Werkstoffauswahl erfolgen?",
+        options: ["Erst bei Serienfreigabe", "Bei der Konzeptphase / Entwurf", "Nur bei Prototypen", "Nach der Fertigungsplanung"],
+        correctIndex: 1,
+        explanation: "Richtig: Früh im PEP – bei Konzeptphase/Entwurf, wenn Bauteilanforderungen und Belastungssituation bekannt sind. Serienfreigabe/Prototypen/Fertigungsplanung = zu spät."
       }
     ]
   },
