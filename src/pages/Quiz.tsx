@@ -1,6 +1,11 @@
-import { useState } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { chapters } from '../data/chapters'
+import {
+  sortCardsByPriority,
+  processReview,
+  resetProgress,
+} from '../utils/spacedRepetition'
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr]
@@ -11,28 +16,60 @@ function shuffle<T>(arr: T[]): T[] {
   return copy
 }
 
+function prepareQuestion(q: (typeof chapters)[0]['quizQuestions'][0]) {
+  return {
+    ...q,
+    options: shuffle(
+      q.options.map((opt, i) => ({ text: opt, originalIndex: i }))
+    ),
+  }
+}
+
 export default function Quiz() {
   const { chapterId } = useParams()
   const chapter = chapters.find((c) => c.id === chapterId)
-  const [questions, setQuestions] = useState(() =>
-    shuffle(chapter?.quizQuestions ?? []).map((q) => ({
-      ...q,
-      options: shuffle(
-        q.options.map((opt, i) => ({ text: opt, originalIndex: i }))
-      ),
-    }))
-  )
+  const [smartMode, setSmartMode] = useState(true)
+  const [resetTrigger, setResetTrigger] = useState(0)
+
+  const orderedQuestions = useMemo(() => {
+    if (!chapterId || !chapter) return []
+    const list = chapter.quizQuestions
+    const ordered = smartMode
+      ? sortCardsByPriority(chapterId, list)
+      : shuffle(list)
+    return ordered.map(prepareQuestion)
+  }, [chapterId, chapter, smartMode, resetTrigger])
+
+  const [questions, setQuestions] = useState<typeof orderedQuestions>([])
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [showResult, setShowResult] = useState(false)
   const [showCompletion, setShowCompletion] = useState(false)
   const [score, setScore] = useState(0)
 
+  useEffect(() => {
+    setQuestions(orderedQuestions)
+    setIndex(0)
+    setSelected(null)
+    setShowResult(false)
+    setShowCompletion(false)
+    setScore(0)
+  }, [orderedQuestions])
+
   if (!chapter) {
     return (
       <div>
         <p>Kapitel nicht gefunden.</p>
         <Link to="/">Zurück</Link>
+      </div>
+    )
+  }
+
+  if (questions.length === 0) {
+    return (
+      <div>
+        <Link to={`/kapitel/${chapter.id}`}>← {chapter.title}</Link>
+        <p style={{ marginTop: '1rem' }}>Keine Quiz-Fragen in diesem Kapitel.</p>
       </div>
     )
   }
@@ -45,7 +82,11 @@ export default function Quiz() {
     if (showResult) return
     setSelected(i)
     setShowResult(true)
-    if (i === correctIndex) setScore((s) => s + 1)
+    const correct = i === correctIndex
+    if (correct) setScore((s) => s + 1)
+    if (chapterId && smartMode) {
+      processReview(chapterId, q.id, correct ? 5 : 1)
+    }
   }
 
   const next = () => {
@@ -61,19 +102,19 @@ export default function Quiz() {
   const isFinished = showCompletion
 
   const resetQuiz = () => {
-    setQuestions(
-      shuffle(chapter.quizQuestions ?? []).map((q) => ({
-        ...q,
-        options: shuffle(
-          q.options.map((opt, i) => ({ text: opt, originalIndex: i }))
-        ),
-      }))
-    )
+    setResetTrigger((t) => t + 1)
     setIndex(0)
     setSelected(null)
     setShowResult(false)
     setShowCompletion(false)
     setScore(0)
+  }
+
+  const handleResetProgress = () => {
+    if (confirm('Fortschritt für dieses Kapitel zurücksetzen?')) {
+      resetProgress(chapterId)
+      setResetTrigger((t) => t + 1)
+    }
   }
 
   return (
@@ -98,11 +139,38 @@ export default function Quiz() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '0.5rem',
         }}
       >
         <span style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
           Frage {index + 1} von {total}
         </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
+            <input
+              type="checkbox"
+              checked={smartMode}
+              onChange={(e) => setSmartMode(e.target.checked)}
+            />
+            Smart-Modus
+          </label>
+          {smartMode && (
+            <button
+              onClick={handleResetProgress}
+              style={{
+                fontSize: '0.8rem',
+                padding: '0.25rem 0.5rem',
+                background: 'transparent',
+                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-sm)',
+                color: 'var(--color-text-muted)',
+              }}
+            >
+              Fortschritt zurücksetzen
+            </button>
+          )}
+        </div>
         {showResult && (
           <span style={{ fontSize: '0.9rem', color: 'var(--color-accent)' }}>
             Punkte: {score}
