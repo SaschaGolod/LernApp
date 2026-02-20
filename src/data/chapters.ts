@@ -2230,7 +2230,7 @@ export const chapters: Chapter[] = [
       {
         id: "w9",
         question: "Wie lautet der Materialindex bei Durchbiegung (Massenminimierung)?",
-        answer: "M_m = E^(1/3) / ρ. Aus max. Durchbiegung w_max = F·L³/(3·E·I) mit I = b·h³/12.",
+        answer: "M_m = E^(1/3)/ρ. Herleitung: (1) w_max = F·L³/(3·E·I), I = b·h³/12 → w_max = 4·F·L³/(E·b·h³). (2) Randbedingung w_max ≤ w_zul → h³ ≥ 4·F·L³/(E·b·w_zul). (3) h = (4·F·L³/(E·b·w_zul))^(1/3). (4) Masse m = ρ·L·A = ρ·L·b·h = ρ·L·b·(4·F·L³/(E·b·w_zul))^(1/3) = ρ·L·b^(2/3)·(4·F·L³/(E·w_zul))^(1/3). (5) Für festes F, L, b, w_zul: m ∝ ρ/E^(1/3). Bei Massenminimierung: ρ/E^(1/3) minimal → E^(1/3)/ρ maximal. Je größer M_m = E^(1/3)/ρ, desto geringer die Masse bei gleicher Durchbiegungsgrenze.",
         category: "Materialindex"
       },
       {
