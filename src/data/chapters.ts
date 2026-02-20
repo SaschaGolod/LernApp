@@ -2224,7 +2224,7 @@ export const chapters: Chapter[] = [
       {
         id: "w8",
         question: "Wie lautet der Materialindex bei Knickung (Massenminimierung)?",
-        answer: "M_m = E^(1/2) / ρ. Aus kritischer Knicklast F_k = π²·E·I/L² und I = π·r⁴/4 folgt: Masse minimieren wenn E^(1/2)/ρ maximiert wird.",
+        answer: "M_m = E^(1/2)/ρ. Herleitung: (1) F_k = π²·E·I/L², I = π·r⁴/4 → F_k = π³·E·r⁴/(4·L²). (2) Randbedingung F_k ≥ F → r⁴ ≥ 4·F·L²/(π³·E). (3) r² = 2·L·√(F/(π³·E)). (4) Masse m = ρ·π·r²·L = 2·ρ·L²·√F/√(π·E). (5) Für festes F, L: m ∝ ρ/√E. Bei Massenminimierung: ρ/√E soll minimal werden → E^(1/2)/ρ soll maximal werden. Je größer der Materialindex M_m = E^(1/2)/ρ, desto geringer die Masse bei gleicher Tragfähigkeit.",
         category: "Materialindex"
       },
       {
