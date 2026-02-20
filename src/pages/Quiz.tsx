@@ -40,20 +40,24 @@ export default function Quiz() {
     return ordered.map(prepareQuestion)
   }, [chapterId, chapter, smartMode, resetTrigger])
 
-  const [questions, setQuestions] = useState<typeof orderedQuestions>([])
-  const [index, setIndex] = useState(0)
+  const [queue, setQueue] = useState<ReturnType<typeof prepareQuestion>[]>([])
+  const [position, setPosition] = useState(0)
   const [selected, setSelected] = useState<number | null>(null)
   const [showResult, setShowResult] = useState(false)
   const [showCompletion, setShowCompletion] = useState(false)
   const [score, setScore] = useState(0)
+  const [lastCorrect, setLastCorrect] = useState<boolean | null>(null)
+  const [appearanceCount, setAppearanceCount] = useState<Record<string, number>>({})
 
   useEffect(() => {
-    setQuestions(orderedQuestions)
-    setIndex(0)
+    setQueue(orderedQuestions)
+    setPosition(0)
     setSelected(null)
     setShowResult(false)
     setShowCompletion(false)
     setScore(0)
+    setLastCorrect(null)
+    setAppearanceCount({})
   }, [orderedQuestions])
 
   if (!chapter) {
@@ -65,7 +69,7 @@ export default function Quiz() {
     )
   }
 
-  if (questions.length === 0) {
+  if (queue.length === 0) {
     return (
       <div>
         <Link to={`/kapitel/${chapter.id}`}>← {chapter.title}</Link>
@@ -74,15 +78,17 @@ export default function Quiz() {
     )
   }
 
-  const q = questions[index]
-  const total = questions.length
+  const q = queue[position]
+  const total = queue.length
   const correctIndex = q.options.findIndex((o) => o.originalIndex === q.correctIndex)
+  const initialCount = orderedQuestions.length
 
   const handleSelect = (i: number) => {
     if (showResult) return
     setSelected(i)
     setShowResult(true)
     const correct = i === correctIndex
+    setLastCorrect(correct)
     if (correct) setScore((s) => s + 1)
     if (chapterId && smartMode) {
       processReview(chapterId, q.id, correct ? 5 : 1)
@@ -90,12 +96,30 @@ export default function Quiz() {
   }
 
   const next = () => {
-    if (index >= total - 1) {
+    const count = appearanceCount[q.id] ?? 0
+    const willAdd =
+      lastCorrect === false && smartMode && count < 2
+    const rawQ = {
+      ...q,
+      options: [...q.options]
+        .sort((a, b) => a.originalIndex - b.originalIndex)
+        .map((o) => o.text),
+    }
+    const newQueue = willAdd ? [...queue, prepareQuestion(rawQ)] : queue
+    const newPosition = position + 1
+
+    if (willAdd) {
+      setQueue(newQueue)
+      setAppearanceCount((prev) => ({ ...prev, [q.id]: count + 1 }))
+    }
+
+    if (newPosition >= newQueue.length) {
       setShowCompletion(true)
     } else {
-      setIndex((i) => i + 1)
+      setPosition(newPosition)
       setSelected(null)
       setShowResult(false)
+      setLastCorrect(null)
     }
   }
 
@@ -103,11 +127,6 @@ export default function Quiz() {
 
   const resetQuiz = () => {
     setResetTrigger((t) => t + 1)
-    setIndex(0)
-    setSelected(null)
-    setShowResult(false)
-    setShowCompletion(false)
-    setScore(0)
   }
 
   const handleResetProgress = () => {
@@ -144,7 +163,12 @@ export default function Quiz() {
         }}
       >
         <span style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
-          Frage {index + 1} von {total}
+          Frage {position + 1} von {total}
+          {smartMode && total > initialCount && (
+            <span style={{ marginLeft: '0.35rem', opacity: 0.8 }}>
+              ({total - initialCount} Wiederholung{total - initialCount > 1 ? 'en' : ''})
+            </span>
+          )}
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
@@ -250,7 +274,13 @@ export default function Quiz() {
                 fontWeight: 500,
               }}
             >
-              {index < total - 1 ? 'Nächste Frage →' : 'Ergebnis anzeigen'}
+              {(() => {
+                const willAdd =
+                  lastCorrect === false && smartMode && (appearanceCount[q.id] ?? 0) < 2
+                const nextPos = position + 1
+                const nextTotal = willAdd ? queue.length + 1 : queue.length
+                return nextPos >= nextTotal ? 'Ergebnis anzeigen' : 'Nächste Frage →'
+              })()}
             </button>
           )}
         </>
@@ -266,10 +296,15 @@ export default function Quiz() {
         >
           <h2 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Quiz abgeschlossen</h2>
           <p style={{ fontSize: '2rem', fontWeight: 600, color: 'var(--color-accent)' }}>
-            {score} / {total}
+            {score} / {initialCount}
           </p>
           <p style={{ color: 'var(--color-text-muted)', marginBottom: '1.5rem' }}>
-            {Math.round((score / total) * 100)}% richtig
+            {Math.round((score / initialCount) * 100)}% richtig
+            {queue.length > initialCount && (
+              <span style={{ display: 'block', fontSize: '0.9rem', marginTop: '0.25rem' }}>
+                ({queue.length - initialCount} Wiederholungen)
+              </span>
+            )}
           </p>
           <button
             onClick={resetQuiz}
