@@ -1948,6 +1948,76 @@ export const chapters: Chapter[] = [
         options: ["Offen = nur Konfigurator, geschlossen = alle Wünsche", "Offen = weitere Wünsche möglich (z.B. Aufschrift), geschlossen = nur Konfigurator-Auswahl", "Kein Unterschied", "Offen = teurer"],
         correctIndex: 1,
         explanation: "Richtig: Offen = weitere Wünsche möglich (z.B. Aufschrift), geschlossen = nur Konfigurator. Offen=nur Konfigurator wäre vertauscht. Kein Unterschied = falsch, offen ermöglicht lokale Anpassungen. Offen=teurer = nur Nebeneffekt, nicht die Definition."
+      },
+      {
+        id: "scmq11",
+        question: "Was ist die Lieferkette?",
+        options: ["Nur das eigene Unternehmen", "Netzwerk von Organisationen mit vor- und nachgelagerten Verbindungen zur Wertschöpfung für den Endkunden", "Nur Zulieferer", "Nur Logistik"],
+        correctIndex: 1,
+        explanation: "Richtig: Netzwerk von Organisationen – Unternehmen, Zulieferer (und deren Zulieferer), Kunden bis Endkunde. Endkunde ist Teil der Lieferkette. Nur eigenes Unternehmen/Zulieferer/Logistik = zu eingeschränkt."
+      },
+      {
+        id: "scmq12",
+        question: "Was umfasst Supply Chain Management (SCM)?",
+        options: ["Nur Beschaffung", "Planung und Management von Lieferantenwahl, Beschaffung, Umwandlung und Logistik; Koordination der Partner", "Nur Produktion", "Nur Vertrieb"],
+        correctIndex: 1,
+        explanation: "Richtig: SCM umfasst alle Aufgaben bei Lieferantenwahl, Beschaffung, Umwandlung und Logistik. Koordination von Lieferanten, Händlern, Logistikdienstleistern, Kunden. Nur Beschaffung/Produktion/Vertrieb = Teilaspekte."
+      },
+      {
+        id: "scmq13",
+        question: "Welche Komplexitätstreiber gibt es auf Produktebene?",
+        options: ["Nur Kostendruck", "Erhöhung der Teilevielzahl, Komponentenanzahl, Dokumentationsaufwand. Externe Produktvielfalt durch kundenindividuelle Anpassungen", "Nur Lieferzeit", "Nur Qualität"],
+        correctIndex: 1,
+        explanation: "Richtig: Teilevielzahl, Komponentenanzahl, Dokumentationsaufwand, Verlust der Transparenz. Kostendruck/Lieferzeit/Qualität = können Folgen sein, nicht die primären Komplexitätstreiber auf Produktebene."
+      },
+      {
+        id: "scmq14",
+        question: "Welche Komplexitätstreiber gibt es auf Supply-Chain-Ebene?",
+        options: ["Nur Lagerhaltung", "Neue Zulieferer, neue Anforderungen ans Anforderungsmanagement, neue Produktionsprozesse, erweiterte Logistik", "Nur Transport", "Nur Beschaffung"],
+        correctIndex: 1,
+        explanation: "Richtig: Getrieben durch Globalisierung, kürzere Produktlebenszyklen, dynamische Anforderungen. Lagerhaltung/Transport/Beschaffung = Teilaspekte, die Supply-Chain-Ebene umfasst mehr."
+      },
+      {
+        id: "scmq15",
+        question: "Was kennzeichnet MTO (Make-to-Order)?",
+        options: ["Lagerfertigung, sofort verfügbar", "Kundenauftragsbezogene Produktion, Inhouse-Fertigung, Standardlieferzeit", "Konstruktion nach Auftrag", "Konfiguration aus Standardkomponenten"],
+        correctIndex: 1,
+        explanation: "Richtig: MTO = Fertigung nach Auftrag, mittlere Mengen, hoher Auftragswert. MTS = Lagerfertigung. ETO = Konstruktion nach Auftrag. CTO = Konfiguration aus Standardkomponenten."
+      },
+      {
+        id: "scmq16",
+        question: "Was bedeutet TIMWOOD im SCM?",
+        options: ["Ein Software-Tool", "Akronym zur Identifizierung von Verschwendung (Transport, Inventory, Motion, Waiting, Overproduction, Overprocessing, Defects)", "Eine Produkttypologie", "Ein Lieferantenmodell"],
+        correctIndex: 1,
+        explanation: "Richtig: TIMWOOD = Lean-Methode zur Identifizierung und Eliminierung von Verschwendung. Software-Tool/Produkttypologie/Lieferantenmodell = falsch."
+      },
+      {
+        id: "scmq17",
+        question: "Was ist Design for Order Fulfillment?",
+        options: ["Ein CAD-System", "Projekt zur Optimierung der Wertschöpfung in der Supply Chain; Wertschöpfung an richtiger Stelle platzieren", "Eine Lagerstrategie", "Ein Vertriebsmodell"],
+        correctIndex: 1,
+        explanation: "Richtig: Teil der Supply Chain gerechten Produktgestaltung. Ziel: Wertschöpfung an richtiger Stelle platzieren, Prozesse rechtlich absichern. CAD/Lagerstrategie/Vertriebsmodell = falsch."
+      },
+      {
+        id: "scmq18",
+        question: "Wofür ist die lokale Wertschöpfungsanalyse wichtig?",
+        options: ["Nur für Lagerhaltung", "Identifizierung dezentraler Produktionsschritte, die in der Supply Chain nicht vorgesehen waren; Basis für Transformation zu zentraler Wertschöpfung", "Nur für Zulieferer", "Nur für Vertrieb"],
+        correctIndex: 1,
+        explanation: "Richtig: Zeigt Produkte mit vielzähligen dezentralen Anpassungen (z.B. Portable Gas Detection MTO+CTO, Helmets CTO). Lagerhaltung/Zulieferer/Vertrieb = zu eingeschränkt."
+      },
+      {
+        id: "scmq19",
+        question: "Welche Ordnungskriterien können für regionale Anforderungsprofile genutzt werden?",
+        options: ["Nur Preis", "Ergonomie, Style, Handhabung, Lieferfähigkeit und Transport, Gesetze und Vorschriften, Zertifikate", "Nur Design", "Nur Qualität"],
+        correctIndex: 1,
+        explanation: "Richtig: Basis für produktbasiertes Lastenheft bei Markterschließung. Preis/Design/Qualität = können Teilaspekte sein, aber nicht die vollständige Liste der Ordnungskriterien."
+      },
+      {
+        id: "scmq20",
+        question: "Was kennzeichnet MTS (Make-to-Stock) in der Logistik?",
+        options: ["Spezialverpackung, Direktlieferung zur Baustelle", "ABC-Lager, hohe Automatisierung, CEP (Parcel/Express)", "Produktbezogene Verpackung, Direktlieferung mit Fokus-Speditionen", "Sondertransport, Spezialausrüstung vor Ort"],
+        correctIndex: 1,
+        explanation: "Richtig: MTS = kurze Lead Times, Standardprodukte, ABC-Lager, CEP. Spezialverpackung/Baustelle = ETO. Fokus-Speditionen = MTO. Sondertransport = ETO."
       }
     ]
   },
